@@ -25,17 +25,48 @@ def Pop():
 
 # Exercise 2
 def ShowStack():
-    # Write your code here
-    pass
+    global Stack, TopOfStack
+    if TopOfStack < 0:
+        return ""
+    items = []
+    for i in range(TopOfStack, -1, -1):
+        items.append(str(Stack[i]))
+    return " ".join(items)
 
 
 # Exercise 3
 def DecimalToBinary(Number):
-    # Write your code here
-    pass
-
+    global Stack, TopOfStack
+    TopOfStack = -1
+    
+    if Number == 0:
+        return "0"
+        
+    while Number > 0:
+        Push(Number % 2)
+        Number = Number // 2
+        
+    binary_digits = []
+    while TopOfStack >= 0:
+        binary_digits.append(str(Pop()))
+        
+    return "".join(binary_digits)
 
 # Exercise 4
 def Editor(Commands):
-    # Write your code here
-    pass
+    global Stack, TopOfStack
+    TopOfStack = -1
+    
+    for cmd in Commands:
+        parts = cmd.split(" ")
+        if parts[0] == "type":
+            Push(parts[1])
+        elif parts[0] == "undo":
+            if TopOfStack >= 0:
+                Pop()
+                
+    result_chars = []
+    for i in range(TopOfStack + 1):
+        result_chars.append(str(Stack[i]))
+        
+    return "".join(result_chars)
