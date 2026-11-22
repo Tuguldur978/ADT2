@@ -6,8 +6,8 @@ Stack = [-1, -1, -1, -1, -1, -1, -1, -1]
 TopOfStack = -1
 
 def Push(Item):
-global Stack, TopOfStack
-    if TopOfStack >= len(Stack) - 1:
+    global Stack, TopOfStack
+    if TopOfStack >= 7:
         return False
     TopOfStack += 1
     Stack[TopOfStack] = Item
@@ -15,7 +15,7 @@ global Stack, TopOfStack
 
 
 def Pop():
-global Stack, TopOfStack
+    global Stack, TopOfStack
     if TopOfStack < 0:
         return -1
     Item = Stack[TopOfStack]
